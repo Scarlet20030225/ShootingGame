@@ -13,6 +13,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         return -1;
     }
 
+    SetCameraNearFar(1.0f, 2000.0f);
+    SetCameraPositionAndTarget_UpVecY(VGet(0, 580, -200), VGet(0.0f, 80.0f, 0.0f));
 
 
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
