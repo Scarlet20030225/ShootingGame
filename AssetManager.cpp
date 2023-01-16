@@ -3,6 +3,8 @@
 
 namespace App
 {
+	AssetManager* AssetManager::mpInstance = nullptr;
+
 	AssetManager::AssetManager()
 	{
 		mpInstance = nullptr;
