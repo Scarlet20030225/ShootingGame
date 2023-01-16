@@ -60,9 +60,23 @@ namespace App
 
 		mShotTime -= deltaTime;
 
+		if (mShotTime < 0.0f && CheckHitKey(KEY_INPUT_SPACE))
+		{
+			mShotTime = mShotInterval;
+			PlayerShot* pb = new App::PlayerShot(this);
+			GameObjectManager::Entry(pb);
+		}
+
+		MV1SetPosition(mModelHandle, mPos);
+
+		MATRIX rotYMat = MGetRotY(180.0f * (float)(DX_PI / 180.0f));
+		VECTOR negativeVec = VTransform(mDir, rotYMat);
+
+		MV1SetRotationZYAxis(mModelHandle, negativeVec, VGet(0.0f, 1.0f, 0.0f), 0.0f);
 	}
 
 	void Player::Draw()
 	{
+		MV1DrawModel(mModelHandle);
 	}
 }
