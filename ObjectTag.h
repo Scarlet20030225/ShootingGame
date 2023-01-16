@@ -9,6 +9,8 @@ namespace App
 		PlayerShot,
 		Enemy,
 		EnemyShot,
+		Boss,
+		BossShot,
 	};
 
 
@@ -18,5 +20,7 @@ namespace App
 		ObjectTag::PlayerShot,
 		ObjectTag::Enemy,
 		ObjectTag::EnemyShot,
+		ObjectTag::Boss,
+		ObjectTag::BossShot,
 	};
 }
