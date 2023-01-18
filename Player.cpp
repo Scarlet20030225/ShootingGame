@@ -49,6 +49,10 @@ namespace App
 			inputVec += LEFT;
 			input = true;
 		}
+		if (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_RIGHT) || CheckHitKey(KEY_INPUT_UP) && CheckHitKey(KEY_INPUT_DOWN))
+		{
+			input = false;
+		}
 		if (input)
 		{
 			inputVec = VNorm(inputVec);
