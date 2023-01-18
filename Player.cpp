@@ -12,7 +12,8 @@ namespace App
 	{
 		mDir = VGet(0.0f, 0.0f, 1.0f);
 
-		mModelHandle = AssetManager::GetMesh("data/model/Type1.mv1");
+		mModelHandle = AssetManager::GetMesh("data/model/Player.mv1");
+		MV1SetScale(mModelHandle, VGet(0.01f, 0.01f, 0.01f));
 	}
 
 	Player::~Player()
