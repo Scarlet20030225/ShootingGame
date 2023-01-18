@@ -19,7 +19,7 @@ namespace App
 		MV1SetPosition(mModelHandle, mPos);
 
 		mCollisionSphere.mLocalCenter = VGet(0, 0, 0);
-		mCollisionSphere.mRadius = 50.0f;
+		mCollisionSphere.mRadius = 10.0f;
 		mCollisionSphere.mWorldCenter = mPos;
 	}
 
@@ -39,6 +39,6 @@ namespace App
 	{
 		MV1DrawModel(mModelHandle);
 
-		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(0, 255, 0), 0, FALSE);// å„Ç≈è¡Ç∑
+		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
 	}
 }
