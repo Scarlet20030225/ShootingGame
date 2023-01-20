@@ -11,7 +11,7 @@ namespace App
 		mModelHandle = AssetManager::GetMesh("data/model/Bullet1.mv1");
 		MV1SetScale(mModelHandle, VGet(0.1f, 0.1f, 0.1f));
 
-		mSpeed = 300.0f;
+		mSpeed = 1200.0f;
 		mPos = player->GetPos();
 		mDir = player->GetDir();
 
