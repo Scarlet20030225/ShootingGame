@@ -19,7 +19,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     }
 
     SetCameraNearFar(1.0f, 2000.0f);
-    SetCameraPositionAndTarget_UpVecY(VGet(0, 0, -1000), VGet(0.0f, 0.0f, 0.0f));
+    SetCameraPositionAndTarget_UpVecY(VGet(960.0f, 540.0f, -1000.0f), VGet(960.0f, 540.0f, 0.0f));
 
     App::GameObjectManager::Init();
     App::AssetManager::Init();
@@ -27,27 +27,35 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     App::Player* player = new App::Player;
     App::GameObjectManager::Entry(player);
 
-    int nowTime = GetNowCount();
-    int prevTime = nowTime;
+    LONGLONG nowCount, prevCount;                      // É}ÉCÉNÉçïb(100ñúï™ÇÃ1ïbíPà Ç≈éûçèéÊìæ)
+    nowCount = prevCount = GetNowHiPerformanceCount();
+    float fixedDeltaTime = 1.0f / 60.0f;               // 60ï™ÇÃ1ïb = 0.01666...ïb
+    float waitFrameTime = 15500;                       // 16000É}ÉCÉNÉçïb = 16É~Éäïb = 0.016ïb
+
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
     {
-        nowTime = GetNowCount();
-        float deltaTime = (nowTime - prevTime) / 1000.0f;
-
-        char buf[256];
-        sprintf(buf, "deltaTime[%5.4f]", deltaTime);
+        float deltaTime;
+        nowCount = GetNowHiPerformanceCount();
+        deltaTime = (nowCount - prevCount) / 1000000.0f;
 
         App::GameObjectManager::Update(deltaTime);
 
         //âÊñ çXêVèàóù
         ClearDrawScreen();
-        DrawString(100, 100, buf, GetColor(255, 255, 255));
+
+        char buf[256];
+        sprintf(buf, "deltaTime = %f, FPS : %f", deltaTime, 1.0f / deltaTime);
+        DrawString(0, 0, buf, GetColor(255, 255, 255));
 
         App::GameObjectManager::Draw();
 
         ScreenFlip();
 
-        prevTime = nowTime;
+        while (GetNowHiPerformanceCount() - nowCount < waitFrameTime)
+        {
+            ;
+        }
+        prevCount = nowCount;
     }
     App::GameObjectManager::Finalize();
     App::AssetManager::Finalize();
