@@ -22,8 +22,8 @@ namespace App
 
 	void Player::Update(float deltaTime)
 	{
-		VECTOR UP = { 0, 0, 1 };
-		VECTOR DOWN = { 0, 0,-1 };
+		VECTOR UP = { 0, 1, 0 };
+		VECTOR DOWN = { 0, -1, 0 };
 		VECTOR LEFT = { -1, 0, 0 };
 		VECTOR RIGHT = { 1, 0, 0 };
 
@@ -70,10 +70,12 @@ namespace App
 
 		MV1SetPosition(mModelHandle, mPos);
 
-		MATRIX rotYMat = MGetRotY(180.0f * (float)(DX_PI / 180.0f));
-		VECTOR negativeVec = VTransform(mDir, rotYMat);
+		MV1SetRotationXYZ(mModelHandle, VGet(0.0f, 270.0f * DX_PI_F / 180.0f, 0.0f));
 
-		MV1SetRotationZYAxis(mModelHandle, negativeVec, VGet(0.0f, 1.0f, 0.0f), 0.0f);
+		//MATRIX rotYMat = MGetRotY(180.0f * (float)(DX_PI / 180.0f));
+		//VECTOR negativeVec = VTransform(mDir, rotYMat);
+
+		//MV1SetRotationZYAxis(mModelHandle, negativeVec, VGet(0.0f, 1.0f, 0.0f), 1.0f);
 	}
 
 	void Player::Draw()
