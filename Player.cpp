@@ -56,10 +56,6 @@ namespace App
 		}
 		if (input)
 		{
-			inputVec = VNorm(inputVec);
-
-			mDir = inputVec;
-
 			mPos = mPos + inputVec * deltaTime * mSpeed;
 		}
 
@@ -74,7 +70,7 @@ namespace App
 
 		MV1SetPosition(mModelHandle, mPos);
 
-		MATRIX rotYMat = MGetRotY(180.0f * (float)(DX_PI / 180.0f));
+		MATRIX rotYMat = MGetRotY(270.0f * (float)(DX_PI / 180.0f));
 		VECTOR negativeVec = VTransform(mDir, rotYMat);
 
 		MV1SetRotationZYAxis(mModelHandle, negativeVec, VGet(0.0f, 1.0f, 0.0f), 0.0f);
