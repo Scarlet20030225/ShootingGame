@@ -10,7 +10,7 @@ namespace App
 	Player::Player() : GameObject(ObjectTag::Player)
 		, mShotTime(0.0f)
 	{
-		mDir = VGet(0.0f, 0.0f, 1.0f);
+		mDir = VGet(1.0f, 0.0f, 0.0f);
 
 		mModelHandle = AssetManager::GetMesh("data/model/Player.mv1");
 		MV1SetScale(mModelHandle, VGet(0.01f, 0.01f, 0.01f));
@@ -70,7 +70,7 @@ namespace App
 
 		MV1SetPosition(mModelHandle, mPos);
 
-		MATRIX rotYMat = MGetRotY(270.0f * (float)(DX_PI / 180.0f));
+		MATRIX rotYMat = MGetRotY(180.0f * (float)(DX_PI / 180.0f));
 		VECTOR negativeVec = VTransform(mDir, rotYMat);
 
 		MV1SetRotationZYAxis(mModelHandle, negativeVec, VGet(0.0f, 1.0f, 0.0f), 0.0f);
