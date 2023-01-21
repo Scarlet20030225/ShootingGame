@@ -15,8 +15,8 @@ namespace App
 		void Draw() override;
 
 	private:
-		const float mSpeed = 500.0f;
 		const float mShotInterval = 0.03f;
+		const float mSpeed = 500.0f;
 		float mShotTime;
 	};
 }

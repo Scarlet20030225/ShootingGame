@@ -23,41 +23,52 @@ namespace App
 
 	void Player::Update(float deltaTime)
 	{
-		VECTOR UP = { 0, 1, 0 };
-		VECTOR DOWN = { 0, -1, 0 };
-		VECTOR LEFT = { -1, 0, 0 };
-		VECTOR RIGHT = { 1, 0, 0 };
 
 		VECTOR inputVec = VGet(0, 0, 0);
 		bool input = false;
 
+		VECTOR UP = { 0,  1,  0 };
 		if (CheckHitKey(KEY_INPUT_UP))
 		{
 			inputVec += UP;
 			input = true;
 		}
+
+		VECTOR DOWN = { 0, -1,  0 };
 		if (CheckHitKey(KEY_INPUT_DOWN))
 		{
 			inputVec += DOWN;
 			input = true;
 		}
+
+		VECTOR RIGHT = { 1,  0,  0 };
 		if (CheckHitKey(KEY_INPUT_RIGHT))
 		{
 			inputVec += RIGHT;
 			input = true;
 		}
+
+		VECTOR LEFT = { -1,  0,  0 };
 		if (CheckHitKey(KEY_INPUT_LEFT))
 		{
 			inputVec += LEFT;
 			input = true;
 		}
+
 		if (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_RIGHT) || CheckHitKey(KEY_INPUT_UP) && CheckHitKey(KEY_INPUT_DOWN))
 		{
 			input = false;
 		}
+
 		if (input)
 		{
-			VNorm(inputVec);
+			/*if    (CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_UP)
+				|| CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_DOWN)
+				|| CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_UP)
+				|| CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_DOWN))
+			{
+				mPos = mPos + inputVec * deltaTime * mSpeed;
+			}*/
 			mPos = mPos + inputVec * deltaTime * mSpeed;
 		}
 
