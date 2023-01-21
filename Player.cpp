@@ -72,7 +72,7 @@ namespace App
 
 		MV1SetPosition(mModelHandle, mPos);
 
-		MV1SetRotationXYZ(mModelHandle, VGet(0.0f, 90.0f * DX_PI_F / 180.0f, 0.0f));
+		MV1SetRotationXYZ(mModelHandle, VGet(90.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
 
 		//MATRIX rotYMat = MGetRotY(180.0f * (float)(DX_PI / 180.0f));
 		//VECTOR negativeVec = VTransform(mDir, rotYMat);
