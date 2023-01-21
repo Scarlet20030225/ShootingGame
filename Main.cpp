@@ -11,6 +11,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     // DxLibèâä˙âª
     ChangeWindowMode(TRUE);
+    SetBackgroundColor(255, 255, 255);
     SetGraphMode(1920, 1080, 32);
 
     if (DxLib_Init() == -1)
