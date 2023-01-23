@@ -11,16 +11,21 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     // DxLibèâä˙âª
     ChangeWindowMode(TRUE);
-    SetBackgroundColor(255, 255, 255);
     SetGraphMode(1920, 1080, 32);
+    //SetBackgroundColor(255, 255, 255);
 
     if (DxLib_Init() == -1)
     {
         return -1;
     }
 
+    // ÉJÉÅÉâ
     SetCameraNearFar(1.0f, 2000.0f);
     SetCameraPositionAndTarget_UpVecY(VGet(960.0f, 540.0f, -1000.0f), VGet(960.0f, 540.0f, 0.0f));
+
+    // ÉâÉCÉg
+    SetLightDirection(VGet(0.0f, 0.0f, 1.0f));
+    SetLightPosition(VGet(960.0f, 540.0f, -1000.0f));
 
     App::GameObjectManager::Init();
     App::AssetManager::Init();
