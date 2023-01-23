@@ -8,8 +8,8 @@ namespace App
 {
 	PlayerShot::PlayerShot(Player* player) : GameObject(ObjectTag::PlayerShot)
 	{
-		mModelHandle = AssetManager::GetMesh("data/model/Bullet1.mv1");
-		MV1SetScale(mModelHandle, VGet(0.1f, 0.1f, 0.1f));
+		mModelHandle = AssetManager::GetMesh("data/model/Missile.mv1");
+		MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
 
 		mSpeed = 1200.0f;
 		mPos = player->GetPos();
@@ -31,6 +31,7 @@ namespace App
 	{
 		mPos += mDir * deltaTime * mSpeed;
 		MV1SetPosition(mModelHandle, mPos);
+		MV1SetRotationXYZ(mModelHandle, VGet(0.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
 
 		mCollisionSphere.Move(mPos);
 	}
@@ -39,6 +40,6 @@ namespace App
 	{
 		MV1DrawModel(mModelHandle);
 
-		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
+		//DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
 	}
 }
