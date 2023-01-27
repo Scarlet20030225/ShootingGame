@@ -58,6 +58,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         QueryPerformanceCounter(&end);
         double time = static_cast<double>(end.QuadPart - start.QuadPart) * 1.0 / freq.QuadPart;
 
+        //gameState->Update();
         App::GameObjectManager::Update(deltaTime);
 
         //画面更新処理
@@ -67,6 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         sprintf(buf, "経過時間：%f秒\n", time);
         DrawString(0, 0, buf, GetColor(255, 0, 0));
 
+        //gameState->Draw();
         App::GameObjectManager::Draw();
 
         ScreenFlip();
