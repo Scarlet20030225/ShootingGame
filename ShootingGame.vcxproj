@@ -151,11 +151,14 @@
     <ClInclude Include="EnemyShot.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="GamePlay.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="ObjectTag.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerShot.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
