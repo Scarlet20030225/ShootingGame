@@ -1,3 +1,4 @@
+#include<windows.h>
 #include"DxLib.h"
 #include"AssetManager.h"
 #include"GameObject.h"
@@ -38,6 +39,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     float fixedDeltaTime = 1.0f / 60.0f;               // 60ï™ÇÃ1ïb = 0.01666...ïb
     float waitFrameTime = 15500;                       // 16000É}ÉCÉNÉçïb = 16É~Éäïb = 0.016ïb
 
+
+    LARGE_INTEGER freq;
+    QueryPerformanceFrequency(&freq);
+    LARGE_INTEGER start, end;
+    QueryPerformanceCounter(&start);
+
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
     {
         float deltaTime;
@@ -50,7 +57,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         ClearDrawScreen();
 
         char buf[256];
-        sprintf(buf, "deltaTime = %f, FPS : %f", deltaTime, 1.0f / deltaTime);
+        //sprintf(buf, "deltaTime = %f, FPS : %f", deltaTime, 1.0f / deltaTime);
         DrawString(0, 0, buf, GetColor(255, 255, 255));
 
         App::GameObjectManager::Draw();
@@ -62,6 +69,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             ;
         }
         prevCount = nowCount;
+        QueryPerformanceCounter(&end);
+
+        double time = static_cast<double>(end.QuadPart - start.QuadPart) * 1000.0 / freq.QuadPart;
+        sprintf(buf, "åoâﬂéûä‘ÅF%lf[ms]\n", time);
     }
     App::GameObjectManager::Finalize();
     App::AssetManager::Finalize();
