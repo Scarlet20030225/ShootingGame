@@ -153,6 +153,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GamePlay.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="ObjectTag.h" />
     <ClInclude Include="Player.h" />
