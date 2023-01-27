@@ -155,6 +155,7 @@
     <ClInclude Include="ObjectTag.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerShot.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
