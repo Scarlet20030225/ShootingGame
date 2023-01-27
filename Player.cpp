@@ -75,7 +75,8 @@ namespace App
 				|| CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_UP)
 				|| CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_DOWN))
 			{
-				mPos = mPos + inputVec * deltaTime * mSpeed * 0.71;	
+				float normalization = 0.71;	// ³‹K‰»
+				mPos = mPos + inputVec * deltaTime * mSpeed * normalization;	
 			}
 
 			// ’Êí‚ÌˆÚ“®—Ê
@@ -98,7 +99,7 @@ namespace App
 
 		if (input)
 		{
-			// ãˆÚ“®‚É‹@‘Ì‚ğX²-30‹•ªŒX‚¯‚é
+			// ãˆÚ“®‚É‹@‘Ì‚ğX²-30‹ŒX‚¯‚é
 			if (CheckHitKey(KEY_INPUT_UP)
 				|| (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_UP))
 				|| (CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_UP)))
@@ -106,7 +107,7 @@ namespace App
 				MV1SetRotationXYZ(mModelHandle, VGet(60.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
 			}
 
-			// ‰ºˆÚ“®‚É‹@‘Ì‚ğX²+30‹•ªŒX‚¯‚é
+			// ‰ºˆÚ“®‚É‹@‘Ì‚ğX²+30‹ŒX‚¯‚é
 			if (CheckHitKey(KEY_INPUT_DOWN)
 				|| (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_DOWN))
 				|| (CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_DOWN)))
