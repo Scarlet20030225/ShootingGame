@@ -71,8 +71,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         prevCount = nowCount;
         QueryPerformanceCounter(&end);
 
-        double time = static_cast<double>(end.QuadPart - start.QuadPart) * 1000.0 / freq.QuadPart;
-        sprintf(buf, "経過時間：%lf[ms]\n", time);
+        double time = static_cast<double>(end.QuadPart - start.QuadPart) * 1.0 / freq.QuadPart;
+        sprintf(buf, "経過時間：%f秒\n", time);
     }
     App::GameObjectManager::Finalize();
     App::AssetManager::Finalize();
