@@ -6,6 +6,8 @@
 #include"Collision.h"
 #include"Player.h"
 #include"PlayerShot.h"
+#include"GameState.h"
+#include"Title.h"
 #pragma warning(disable:4996)
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -33,6 +35,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     App::Player* player = new App::Player;
     App::GameObjectManager::Entry(player);
+
+    App::GameState* gameState = new App::Title;
 
     LONGLONG nowCount, prevCount;                      // マイクロ秒(100万分の1秒単位で時刻取得)
     nowCount = prevCount = GetNowHiPerformanceCount();
