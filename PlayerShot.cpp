@@ -11,7 +11,7 @@ namespace App
 		mModelHandle = AssetManager::GetMesh("data/model/Missile.mv1");
 		MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
 
-		mSpeed = 1200.0f;
+		mSpeed = 0.0f;
 		mPos = player->GetPos();
 		mDir = player->GetDir();
 
@@ -29,6 +29,7 @@ namespace App
 
 	void PlayerShot::Update(float deltaTime)
 	{
+		mSpeed += mAcceleration;
 		mPos += mDir * deltaTime * mSpeed;
 		MV1SetPosition(mModelHandle, mPos);
 		MV1SetRotationXYZ(mModelHandle, VGet(0.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));

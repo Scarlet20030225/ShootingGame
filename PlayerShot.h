@@ -20,6 +20,7 @@ namespace App
 	private:
 		VECTOR mDir;
 		float  mSpeed;
+		const float mAcceleration = 50.0f;
 		Lib::Sphere mCollisionSphere;
 	};
 };
