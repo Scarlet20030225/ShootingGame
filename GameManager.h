@@ -9,8 +9,6 @@ namespace App
 		GameManager();
 		~GameManager();
 
-		void GameInit();
-		void GameLoop();
-		void GameEndProcessing();
+		static void Game();
 	};
 }

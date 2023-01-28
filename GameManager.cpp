@@ -10,6 +10,7 @@
 #include"Result.h"
 #include"Player.h"
 #include"PlayerShot.h"
+#pragma warning(disable:4996)
 
 namespace App
 {
@@ -21,8 +22,8 @@ namespace App
     {
     }
 
-    void GameManager::GameInit()
-	{
+    void GameManager::Game()
+    {
         // DxLib初期化
         ChangeWindowMode(TRUE);
         DxLib_Init();
@@ -30,7 +31,8 @@ namespace App
         //SetBackgroundColor(255, 255, 255);
 
         // カメラ
-        App::Camera;
+        SetCameraNearFar(1.0f, 2000.0f);
+        SetCameraPositionAndTarget_UpVecY(VGet(960.0f, 540.0f, -1000.0f), VGet(960.0f, 540.0f, 0.0f));
 
         // ライト(使うかどうかは最後に決める)
         /*SetLightDirection(VGet(0.0f, 0.0f, 1.0f));
@@ -53,10 +55,7 @@ namespace App
         QueryPerformanceFrequency(&freq);
         LARGE_INTEGER start, end;
         QueryPerformanceCounter(&start);
-	}
-	
-	void GameManager::GameLoop()
-	{
+
         while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
         {
             float deltaTime;
@@ -87,9 +86,7 @@ namespace App
             }
             prevCount = nowCount;
         }
-	}
-    void GameManager::GameEndProcessing()
-    {
+
         App::GameObjectManager::Finalize();
         App::AssetManager::Finalize();
 
