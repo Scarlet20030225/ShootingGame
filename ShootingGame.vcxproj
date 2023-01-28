@@ -136,6 +136,7 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GamePlay.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerShot.h" />
     <ClInclude Include="Result.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>
