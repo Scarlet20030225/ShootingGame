@@ -55,9 +55,9 @@ namespace App
 
         App::GameObjectManager::Entry(player);
 
-        freq = new LARGE_INTEGER();
+        freq  = new LARGE_INTEGER();
         start = new LARGE_INTEGER();
-        end = new LARGE_INTEGER();
+        end   = new LARGE_INTEGER();
 
         nowCount = prevCount = GetNowHiPerformanceCount();
 
@@ -82,18 +82,14 @@ namespace App
             ClearDrawScreen();
 
             char buf[256];
-            sprintf(buf, "Œo‰ßŽžŠÔF%f•b\n", time);
             DrawString(0, 0, buf, GetColor(255, 0, 0));
+            sprintf(buf, "Œo‰ßŽžŠÔF%f•b\n", time);
 
             //gameState->Draw();
             App::GameObjectManager::Draw();
 
             ScreenFlip();
 
-            while (GetNowHiPerformanceCount() - nowCount < waitFrameTime)
-            {
-                ;
-            }
             prevCount = nowCount;
         }
     }
