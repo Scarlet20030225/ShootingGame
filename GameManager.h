@@ -9,12 +9,12 @@ namespace App
 	class GameManager
 	{
 	public:
-		GameManager();
-		~GameManager();
+		GameManager();		// コンストラクタ
+		~GameManager();		// デストラクタ
 
-		void Init();
-		void Loop();
-		void Finalize();
+		void Init();		// 初期化
+		void Loop();		// ループ
+		void Finalize();	// 後処理
 
 	private:
 		LONGLONG nowCount, prevCount;
