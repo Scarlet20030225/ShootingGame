@@ -1,6 +1,5 @@
 #include"GameManager.h"
 #include"AssetManager.h"
-#include"GameObject.h"
 #include"GameObjectManager.h"
 #include"Collision.h"
 #include"Camera.h"
@@ -8,7 +7,6 @@
 #include"OperationMethod.h"
 #include"GamePlay.h"
 #include"Result.h"
-#include"Player.h"
 #include"PlayerShot.h"
 #pragma warning(disable:4996)
 
@@ -20,9 +18,20 @@ namespace App
 
     GameManager::~GameManager()
     {
+        delete player;
+        delete gameState;
+        delete freq;
+        delete start;
+        delete end;
+
+        player    = nullptr;
+        gameState = nullptr;
+        freq      = nullptr;
+        start     = nullptr;
+        end       = nullptr;
     }
 
-    void GameManager::Game()
+    void GameManager::Init()
     {
         // DxLibèâä˙âª
         ChangeWindowMode(TRUE);
@@ -41,29 +50,30 @@ namespace App
         App::GameObjectManager::Init();
         App::AssetManager::Init();
 
-        App::Player* player = new App::Player;
+        player    = new App::Player();
+        gameState = new App::Title();
+
         App::GameObjectManager::Entry(player);
 
-        App::GameState* gameState = new App::Title;
+        freq = new LARGE_INTEGER();
+        start = new LARGE_INTEGER();
+        end = new LARGE_INTEGER();
 
-        LONGLONG nowCount, prevCount;
         nowCount = prevCount = GetNowHiPerformanceCount();
-        float fixedDeltaTime = 1.0f / 60.0f;
-        float waitFrameTime = 15500;
 
-        LARGE_INTEGER freq;
-        QueryPerformanceFrequency(&freq);
-        LARGE_INTEGER start, end;
-        QueryPerformanceCounter(&start);
-
+        QueryPerformanceFrequency(freq);
+        QueryPerformanceCounter(start);
+    }
+    void GameManager::Loop()
+    {
         while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
         {
             float deltaTime;
             nowCount = GetNowHiPerformanceCount();
             deltaTime = (nowCount - prevCount) / 1000000.0f;
 
-            QueryPerformanceCounter(&end);
-            double time = static_cast<double>(end.QuadPart - start.QuadPart) * 1.0 / freq.QuadPart;
+            QueryPerformanceCounter(end);
+            double time = static_cast<double>(end->QuadPart - start->QuadPart) * 1.0 / freq->QuadPart;
 
             //gameState->Update(deltaTime);
             App::GameObjectManager::Update(deltaTime);
@@ -86,7 +96,9 @@ namespace App
             }
             prevCount = nowCount;
         }
-
+    }
+    void GameManager::Finalize()
+    {
         App::GameObjectManager::Finalize();
         App::AssetManager::Finalize();
 
