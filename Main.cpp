@@ -4,6 +4,7 @@
 #include"GameObject.h"
 #include"GameObjectManager.h"
 #include"Collision.h"
+#include"Camera.h"
 #include"Player.h"
 #include"PlayerShot.h"
 #include"GameState.h"
@@ -26,8 +27,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     }
 
     // カメラ
-    SetCameraNearFar(1.0f, 2000.0f);
-    SetCameraPositionAndTarget_UpVecY(VGet(960.0f, 540.0f, -1000.0f), VGet(960.0f, 540.0f, 0.0f));
+    App::Camera();
 
     // ライト(使うかどうかは最後に決める)
     /*SetLightDirection(VGet(0.0f, 0.0f, 1.0f));
