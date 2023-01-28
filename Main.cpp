@@ -18,13 +18,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     //------------------------------------------------------------------------------------------------------------
     // DxLibèâä˙âª
     ChangeWindowMode(TRUE);
+    DxLib_Init();
     SetGraphMode(1920, 1080, 32);
     //SetBackgroundColor(255, 255, 255);
-
-    if (DxLib_Init() == -1)
-    {
-        return -1;
-    }
 
     // ÉJÉÅÉâ
     App::Camera();
