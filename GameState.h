@@ -10,7 +10,7 @@ namespace App
 		GameState() {};
 		virtual ~GameState() {};
 
-		virtual		 GameState* Update() = 0;
+		virtual		 GameState* Update(float deltaTime) = 0;
 		virtual void Draw() = 0;
 	};
 }

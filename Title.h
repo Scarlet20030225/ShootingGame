@@ -13,7 +13,7 @@ namespace App
 	public:
 		Title();
 		~Title();
-		GameState* Update();
+		GameState* Update(float deltaTime);
 		void Draw();
 	};
 }

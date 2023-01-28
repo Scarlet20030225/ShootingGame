@@ -14,7 +14,7 @@ namespace App
 		Result();
 		~Result();
 
-		GameState* Update();
+		GameState* Update(float deltaTime);
 		void Draw();
 	};
 }

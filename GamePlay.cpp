@@ -13,7 +13,7 @@ namespace App
 	{
 	}
 
-	GameState* GamePlay::Update()
+	GameState* GamePlay::Update(float deltaTime)
 	{
 		if (CheckHitKey(KEY_INPUT_ESCAPE))
 		{

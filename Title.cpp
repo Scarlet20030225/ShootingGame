@@ -13,7 +13,7 @@ namespace App
 	{
 	}
 
-	GameState* Title::Update()
+	GameState* Title::Update(float deltaTime)
 	{
 		if (CheckHitKey(KEY_INPUT_RETURN))
 		{
