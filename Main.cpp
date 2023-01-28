@@ -38,10 +38,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     App::GameState* gameState = new App::Title;
 
-    LONGLONG nowCount, prevCount;                      // É}ÉCÉNÉçïb(100ñúï™ÇÃ1ïbíPà Ç≈éûçèéÊìæ)
+    LONGLONG nowCount, prevCount;
     nowCount = prevCount = GetNowHiPerformanceCount();
-    float fixedDeltaTime = 1.0f / 60.0f;               // 60ï™ÇÃ1ïb = 0.01666...ïb
-    float waitFrameTime = 15500;                       // 16000É}ÉCÉNÉçïb = 16É~Éäïb = 0.016ïb
+    float fixedDeltaTime = 1.0f / 60.0f;
+    float waitFrameTime = 15500;
 
 
     LARGE_INTEGER freq;

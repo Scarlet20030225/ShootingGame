@@ -18,9 +18,9 @@ namespace App
 		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }
 
 	private:
-		VECTOR mDir;
-		float  mSpeed;
-		const float mAcceleration = 50.0f;
-		Lib::Sphere mCollisionSphere;
+		VECTOR mDir;						// ’e‚ÌŒü‚«
+		float  mSpeed;						// ’e‚Ì‘¬“x
+		const float mAcceleration = 50.0f;	// ’e‚Ì‰Á‘¬’l
+		Lib::Sphere mCollisionSphere;		// “–‚½‚è”»’è‹…
 	};
 };

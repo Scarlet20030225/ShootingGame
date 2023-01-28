@@ -75,8 +75,8 @@ namespace App
 				|| CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_UP)
 				|| CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_DOWN))
 			{
-				float normalization = 0.71;	// 正規化
-				mPos = mPos + inputVec * deltaTime * mSpeed * normalization;	
+				float normalization = 0.71;	// √2を割る
+				mPos = mPos + inputVec * deltaTime * mSpeed * normalization;	// 正規化
 			}
 
 			// 通常時の移動量
@@ -88,9 +88,13 @@ namespace App
 
 		mShotTime -= deltaTime;
 
-		if (mShotTime < 0.0f && CheckHitKey(KEY_INPUT_SPACE))
+		// 弾発射処理
+		if (mShotTime < 0.0f && CheckHitKey(KEY_INPUT_SPACE))	// スペースキーを押すと
 		{
+			// 発射間隔を設定
 			mShotTime = mShotInterval;
+
+			// PlayerShotを呼び出す
 			PlayerShot* pb = new App::PlayerShot(this);
 			GameObjectManager::Entry(pb);
 		}
