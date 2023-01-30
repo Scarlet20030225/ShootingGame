@@ -12,7 +12,7 @@ namespace App
 		MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
 		MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.1f, 0.0f, 0.6f, 0.0f));
 
-		mSpeed = 0.0f;
+		mMissileSpeed = 0.0f;
 		mPos = player->GetPos();
 		mDir = player->GetDir();
 
@@ -30,8 +30,14 @@ namespace App
 
 	void PlayerShot::Update(float deltaTime)
 	{
-		mSpeed += mAcceleration;
-		mPos += mDir * deltaTime * mSpeed;
+		// マシンガン
+		
+		// ホーミング弾
+
+		// ミサイル
+		mMissileSpeed += mAcceleration;
+		mPos += mDir * deltaTime * mMissileSpeed;
+
 		MV1SetPosition(mModelHandle, mPos);
 		MV1SetRotationXYZ(mModelHandle, VGet(0.0f, 0.0f, 0.0f));
 

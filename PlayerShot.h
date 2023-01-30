@@ -27,8 +27,8 @@ namespace App
 
 	private:
 		VECTOR mDir;						// 弾の向き
-		float  mSpeed;						// 弾の速度
-		const float mAcceleration = 50.0f;	// 弾の加速値
+		float  mMissileSpeed;				// ミサイルの速度
+		const float mAcceleration = 50.0f;	// ミサイルの加速値
 		Lib::Sphere mCollisionSphere;		// 当たり判定球
 	};
 };
