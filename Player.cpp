@@ -15,6 +15,7 @@ namespace App
 
 		mModelHandle = AssetManager::GetMesh("data/model/Player.mv1");	// モデル読み込み
 		MV1SetScale(mModelHandle, VGet(0.1f, 0.1f, 0.1f));		// モデルのスケールを変更
+		MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.1f, 0.0f, 0.6f, 0.0f));
 	}
 
 	Player::~Player()

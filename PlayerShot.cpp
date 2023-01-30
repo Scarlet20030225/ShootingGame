@@ -10,6 +10,7 @@ namespace App
 	{
 		mModelHandle = AssetManager::GetMesh("data/model/Missile.mv1");
 		MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
+		MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.1f, 0.0f, 0.6f, 0.0f));
 
 		mSpeed = 0.0f;
 		mPos = player->GetPos();
