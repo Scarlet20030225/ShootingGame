@@ -12,7 +12,15 @@ namespace App
 		PlayerShot(class Player* player);
 		~PlayerShot();
 
+		/// <summary>
+		/// アップデート処理
+		/// </summary>
+		/// <param name="deltaTime"></param>
 		void Update(float deltaTime);
+
+		/// <summary>
+		/// 描画
+		/// </summary>
 		void Draw();
 
 		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }

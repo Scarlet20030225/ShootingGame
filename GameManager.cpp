@@ -2,7 +2,6 @@
 #include"AssetManager.h"
 #include"GameObjectManager.h"
 #include"Collision.h"
-#include"Camera.h"
 #include"Title.h"
 #include"OperationMethod.h"
 #include"GamePlay.h"
@@ -39,31 +38,23 @@ namespace App
         SetGraphMode(1920, 1080, 32);
         //SetBackgroundColor(255, 255, 255);
 
-        // カメラ
-        SetCameraNearFar(1.0f, 2000.0f);
-        SetCameraPositionAndTarget_UpVecY(VGet(960.0f, 540.0f, -1000.0f), VGet(960.0f, 540.0f, 0.0f));
-
-        // ライト(使うかどうかは最後に決める)
-        /*SetLightDirection(VGet(0.0f, 0.0f, 1.0f));
-        SetLightPosition(VGet(960.0f, 540.0f, -1000.0f));*/
-
         App::GameObjectManager::Init();
         App::AssetManager::Init();
 
         player    = new App::Player();
         gameState = new App::Title();
+        camera    = new App::Camera();
+        freq      = new LARGE_INTEGER();
+        start     = new LARGE_INTEGER();
+        end       = new LARGE_INTEGER();
 
         App::GameObjectManager::Entry(player);
 
-        freq  = new LARGE_INTEGER();
-        start = new LARGE_INTEGER();
-        end   = new LARGE_INTEGER();
-
         nowCount = prevCount = GetNowHiPerformanceCount();
-
         QueryPerformanceFrequency(freq);
         QueryPerformanceCounter(start);
     }
+
     void GameManager::Loop()
     {
         while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
@@ -81,6 +72,7 @@ namespace App
             //画面更新処理
             ClearDrawScreen();
 
+            // 経過時間描画(後で消す)
             char buf[256];
             DrawString(0, 0, buf, GetColor(255, 0, 0));
             sprintf(buf, "経過時間：%f秒\n", time);
@@ -93,6 +85,7 @@ namespace App
             prevCount = nowCount;
         }
     }
+
     void GameManager::Finalize()
     {
         App::GameObjectManager::Finalize();

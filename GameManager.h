@@ -2,6 +2,7 @@
 #include"DxLib.h"
 #include"Player.h"
 #include"GameState.h"
+#include"Camera.h"
 
 namespace App
 {
@@ -11,9 +12,20 @@ namespace App
 		GameManager();		// コンストラクタ
 		~GameManager();		// デストラクタ
 
-		void Init();		// 初期化
-		void Loop();		// ループ
-		void Finalize();	// 後処理
+		/// <summary>
+		/// 初期化
+		/// </summary>
+		void Init();
+
+		/// <summary>
+		/// ループ
+		/// </summary>
+		void Loop();
+
+		/// <summary>
+		/// 後処理
+		/// </summary>
+		void Finalize();
 
 	private:
 		LONGLONG nowCount, prevCount;
@@ -26,5 +38,6 @@ namespace App
 
 		Player* player;
 		GameState* gameState;
+		Camera* camera;
 	};
 }

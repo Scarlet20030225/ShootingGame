@@ -11,7 +11,15 @@ namespace App
 		Player();
 		~Player();
 
+		/// <summary>
+		/// アップデート処理
+		/// </summary>
+		/// <param name="deltaTime"></param>
 		void Update(float deltaTime) override;
+
+		/// <summary>
+		/// 描画処理
+		/// </summary>
 		void Draw() override;
 
 	private:
