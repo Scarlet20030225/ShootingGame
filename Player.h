@@ -23,8 +23,10 @@ namespace App
 		void Draw() override;
 
 	private:
-		const float mSpeed		  = 500.0f;	// プレイヤーの速度
-		const float mShotInterval = 1.03f;	// 弾の発射間隔
+		const float mSpeed			 = 500.0f;	// プレイヤーの速度
+		const float mRapidInterval   =   0.2f;	// マシンガンの発射間隔
+		const float mHomingInterval  =   0.6f;	// ホーミング弾の発射間隔
+		const float mMissileInterval =   1.1f;	// ミサイルの発射間隔
 		float mShotTime;
 	};
 }

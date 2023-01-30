@@ -93,7 +93,7 @@ namespace App
 		if (mShotTime < 0.0f && CheckHitKey(KEY_INPUT_SPACE))	// スペースキーを押すと
 		{
 			// 発射間隔を設定
-			mShotTime = mShotInterval;
+			mShotTime = mMissileInterval;
 
 			// PlayerShotを呼び出す
 			PlayerShot* pb = new App::PlayerShot(this);
