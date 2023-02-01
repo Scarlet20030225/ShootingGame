@@ -32,6 +32,12 @@ namespace App
 		GameState* gameState;
 		Camera* camera;
 
+		// ウィンドウ関連
+		int screenSizeX   = 1920;	// スクリーン幅
+		int screenSizeY   = 1080;	// スクリーン高さ
+		int colorBitDepth =   32;	// カラービット数
+
+		// フレーム関連
 		int fps;
 		int deltaTime;
 	};
