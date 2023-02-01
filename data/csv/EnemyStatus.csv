@@ -1,5 +1,5 @@
-﻿機種,弾種類,X座標,Y座標,ライフ,移動速度,弾速度
-0,0,,,,,
-1,1,,,,,
-2,0,,,,,
-3,1,,,,,
+type,speed,routine,life,shotType,shotSpeed,shotRoutine,shotInterval,appearance,x,y,address
+1,400,1,3,1,800,1,1,10,2000,500,data/model/Type1.mv1
+2,550,2,1,0,0,0,0,10,2000,600,data/model/Type2.mv1
+3,200,3,5,1,800,2,1,10,2000,700,data/model/Type3.mv1
+4,400,4,2,0,0,0,0,10,2000,800,data/model/Type4.mv1
