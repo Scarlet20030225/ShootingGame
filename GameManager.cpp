@@ -7,6 +7,8 @@
 #include"GamePlay.h"
 #include"Result.h"
 #include"PlayerShot.h"
+#include <chrono>
+#include <thread>
 #pragma warning(disable:4996)
 
 namespace App
@@ -19,15 +21,9 @@ namespace App
     {
         delete player;
         delete gameState;
-        delete freq;
-        delete start;
-        delete end;
 
         player    = nullptr;
         gameState = nullptr;
-        freq      = nullptr;
-        start     = nullptr;
-        end       = nullptr;
     }
 
     void GameManager::Init()
@@ -44,27 +40,18 @@ namespace App
         player    = new App::Player();
         gameState = new App::Title();
         camera    = new App::Camera();
-        freq      = new LARGE_INTEGER();
-        start     = new LARGE_INTEGER();
-        end       = new LARGE_INTEGER();
 
         App::GameObjectManager::Entry(player);
 
-        nowCount = prevCount = GetNowHiPerformanceCount();
-        QueryPerformanceFrequency(freq);
-        QueryPerformanceCounter(start);
+        fps = 60;
+        deltaTime = 1000 / fps;
     }
 
     void GameManager::Loop()
     {
         while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
         {
-            float deltaTime;
-            nowCount = GetNowHiPerformanceCount();
-            deltaTime = (nowCount - prevCount) / 1000000.0f;
-
-            QueryPerformanceCounter(end);
-            double time = static_cast<double>(end->QuadPart - start->QuadPart) * 1.0 / freq->QuadPart;
+            auto start = std::chrono::system_clock::now();
 
             //gameState->Update(deltaTime);
             App::GameObjectManager::Update(deltaTime);
@@ -72,17 +59,18 @@ namespace App
             //画面更新処理
             ClearDrawScreen();
 
-            // 経過時間描画(後で消す)
-            char buf[256];
-            DrawString(0, 0, buf, GetColor(255, 0, 0));
-            sprintf(buf, "経過時間：%f秒\n", time);
-
             //gameState->Draw();
             App::GameObjectManager::Draw();
 
             ScreenFlip();
 
-            prevCount = nowCount;
+            auto end = std::chrono::system_clock::now();
+            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+            if (elapsed.count() < deltaTime)
+            {
+                std::this_thread::sleep_for(std::chrono::milliseconds(deltaTime - elapsed.count()));
+            }
         }
     }
 

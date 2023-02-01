@@ -28,16 +28,11 @@ namespace App
 		void Finalize();
 
 	private:
-		LONGLONG nowCount, prevCount;
-		float fixedDeltaTime = 1.0f / 60.0f;
-		float waitFrameTime = 15500;
-
-		LARGE_INTEGER* freq;
-		LARGE_INTEGER* start;
-		LARGE_INTEGER* end;
-
 		Player* player;
 		GameState* gameState;
 		Camera* camera;
+
+		int fps;
+		int deltaTime;
 	};
 }
