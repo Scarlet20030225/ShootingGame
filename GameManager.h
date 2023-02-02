@@ -1,6 +1,7 @@
 #pragma once
 #include"DxLib.h"
 #include"Player.h"
+#include"Boss.h"
 #include"GameState.h"
 #include"Camera.h"
 
@@ -29,6 +30,7 @@ namespace App
 
 	private:
 		Player* player;
+		Boss* boss;
 		GameState* gameState;
 		Camera* camera;
 

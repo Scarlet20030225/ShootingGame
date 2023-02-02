@@ -22,9 +22,11 @@ namespace App
     GameManager::~GameManager()
     {
         delete player;
+        delete boss;
         delete gameState;
 
         player    = nullptr;
+        boss      = nullptr;
         gameState = nullptr;
     }
 
@@ -40,10 +42,12 @@ namespace App
         App::AssetManager::Init();
 
         player    = new App::Player();
+        boss      = new App::Boss();
         gameState = new App::Title();
         camera    = new App::Camera();
 
         App::GameObjectManager::Entry(player);
+        App::GameObjectManager::Entry(boss);
 
         // ƒtƒŒ[ƒ€‚ğ60fps‚É
         fps = 60;

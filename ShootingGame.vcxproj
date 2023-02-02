@@ -134,6 +134,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossShot.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -169,7 +171,6 @@
     <ClInclude Include="PlayerShot.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="StateTag.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
