@@ -15,6 +15,9 @@ namespace App
 		~Title();
 		GameState* Update(float deltaTime);
 		void Draw();
+
+	private:
+		int mGraph;
 	};
 }
 #endif // !__TITLE_H__

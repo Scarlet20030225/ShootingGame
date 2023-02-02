@@ -142,6 +142,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="OperationMethod.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GamePlay.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="ObjectTag.h" />
     <ClInclude Include="OperationMethod.h" />
@@ -169,6 +171,7 @@
     <ClInclude Include="PlayerShot.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="StateTag.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

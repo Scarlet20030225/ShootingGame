@@ -7,6 +7,7 @@ namespace App
 {
 	Title::Title()
 	{
+
 	}
 
 	Title::~Title()
