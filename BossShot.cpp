@@ -1,11 +1,45 @@
-#include "BossShot.h"
+#include"Boss.h"
+#include"BossShot.h"
+#include"AssetManager.h"
+
+using namespace Lib;
 
 namespace App
 {
-	BossShot::BossShot()
+	BossShot::BossShot(Boss* boss) : GameObject(ObjectTag::BossShot)
 	{
+		mModelHandle = AssetManager::GetMesh("data/model/Bullet1.mv1");
+		MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
+		MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.5f, 0.0f, 0.0f, 0.0f));
+
+		mSpeed = 1.0f;
+		mPos = boss->GetPos();
+		mDir = boss->GetDir();
+
+		MV1SetRotationZYAxis(mModelHandle, mDir, VGet(0.0f, 1.0f, 0.0f), 0.0f);
+		MV1SetPosition(mModelHandle, mPos);
+
+		mCollisionSphere.mLocalCenter = VGet(0, 0, 0);
+		mCollisionSphere.mRadius = 10.0f;
+		mCollisionSphere.mWorldCenter = mPos;
 	}
+
 	BossShot::~BossShot()
 	{
+	}
+
+	void BossShot::Update(float deltaTime)
+	{
+		mPos += mDir * deltaTime * -mSpeed;
+
+		MV1SetPosition(mModelHandle, mPos);
+		MV1SetRotationXYZ(mModelHandle, VGet(0.0f, 0.0f, 0.0f));
+
+		mCollisionSphere.Move(mPos);
+	}
+
+	void BossShot::Draw()
+	{
+		MV1DrawModel(mModelHandle);
 	}
 }

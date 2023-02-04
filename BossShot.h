@@ -9,7 +9,7 @@ namespace App
 	class BossShot : public GameObject
 	{
 	public:
-		BossShot();
+		BossShot(class Boss* boss);
 		~BossShot();
 
 		/// <summary>
@@ -27,8 +27,7 @@ namespace App
 
 	private:
 		VECTOR mDir;						// 弾の向き
-		float  mMissileSpeed;				// ミサイルの速度
-		const float mAcceleration = 0.1f;	// ミサイルの加速値
+		float  mSpeed;						// 弾の速度
 		Lib::Sphere mCollisionSphere;		// 当たり判定球
 	};
 }

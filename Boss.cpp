@@ -10,7 +10,7 @@ namespace App
 	Boss::Boss() : GameObject(ObjectTag::Boss)
 		, mShotTime(0.0f)
 	{
-		mPos = VGet(1600.0f, 540.0f, 0.0f);	// 初期座標を所得
+		mPos = VGet(1600.0f, 540.0f, 500.0f);	// 初期座標を所得
 		mDir = VGet(1.0f, 0.0f, 0.0f);		// 向きを所得
 
 		mModelHandle = AssetManager::GetMesh("data/model/Boss.mv1");		// モデル読み込み	
@@ -26,6 +26,25 @@ namespace App
 	{
 		MV1SetPosition(mModelHandle, mPos);
 
+		if (mPos.z > 0)
+		{
+			mPos.z -= 2;
+		}
+
+		// 弾発射処理
+		if (mPos.z == 0)
+		{
+			mShotTime -= deltaTime;
+			if (mShotTime < 0.0f)
+			{
+				// 発射間隔を設定
+				mShotTime = shotInterval;
+
+				// PlayerShotを呼び出す
+				BossShot* bossShot = new App::BossShot(this);
+				GameObjectManager::Entry(bossShot);
+			}
+		}
 	}
 
 	void Boss::Draw()
