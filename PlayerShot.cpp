@@ -20,7 +20,7 @@ namespace App
 		MV1SetPosition(mModelHandle, mPos);
 
 		mCollisionSphere.mLocalCenter = VGet(0, 0, 0);
-		mCollisionSphere.mRadius = 10.0f;
+		mCollisionSphere.mRadius = 8.0f;
 		mCollisionSphere.mWorldCenter = mPos;
 	}
 
