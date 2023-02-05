@@ -16,6 +16,10 @@ namespace App
 		mModelHandle = AssetManager::GetMesh("data/model/Player.mv1");	// モデル読み込み
 		MV1SetScale(mModelHandle, VGet(0.1f, 0.1f, 0.1f));		// モデルのスケールを変更
 		MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.1f, 0.0f, 0.6f, 0.0f));
+
+		mCollisionSphere.mLocalCenter = VGet(0, 0, 0);
+		mCollisionSphere.mRadius = 50.0f;
+		mCollisionSphere.mWorldCenter = mPos;
 	}
 
 	Player::~Player()
@@ -85,6 +89,8 @@ namespace App
 			{
 				mPos = mPos + inputVec * deltaTime * mSpeed;
 			}
+
+			mCollisionSphere.Move(mPos);
 		}
 
 		mShotTime -= deltaTime;
@@ -131,5 +137,6 @@ namespace App
 	void Player::Draw()
 	{
 		MV1DrawModel(mModelHandle);	// モデルを描画
+		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// 後で消す
 	}
 }
