@@ -16,6 +16,10 @@ namespace App
 		mModelHandle = AssetManager::GetMesh("data/model/Boss.mv1");		// モデル読み込み	
 		MV1SetScale(mModelHandle, VGet(0.6f, 0.6f, 0.6f));		// モデルのスケールを変更
 		MV1SetRotationXYZ(mModelHandle, VGet(90.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f));
+
+		mCollisionSphere.mLocalCenter = VGet(0, 0, 0);
+		mCollisionSphere.mRadius = 300.0f;
+		mCollisionSphere.mWorldCenter = mPos;
 	}
 
 	Boss::~Boss()
@@ -45,10 +49,13 @@ namespace App
 				GameObjectManager::Entry(bossShot);
 			}
 		}
+
+		mCollisionSphere.Move(mPos);
 	}
 
 	void Boss::Draw()
 	{
 		MV1DrawModel(mModelHandle);	// モデルを描画
+		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// 後で消す
 	}
 }

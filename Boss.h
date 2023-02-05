@@ -1,6 +1,7 @@
 #pragma once
 #include"DxLib.h"
 #include"Math.h"
+#include"Collision.h"
 #include"GameObject.h"
 
 #define ENEMY_SHOT_FRAME 500
@@ -24,9 +25,12 @@ namespace App
 		/// </summary>
 		void Draw() override;
 
+		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }
+
 	private:
 		const float shotInterval =  500.0f;
 		const float beamInterval = 1500.0f;
 		float mShotTime;
+		Lib::Sphere mCollisionSphere;		// “–‚½‚è”»’è‹…
 	};
 }
