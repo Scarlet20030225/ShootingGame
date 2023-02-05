@@ -15,7 +15,8 @@ namespace App
 
 		mModelHandle = AssetManager::GetMesh("data/model/Player.mv1");	// モデル読み込み
 		MV1SetScale(mModelHandle, VGet(0.1f, 0.1f, 0.1f));		// モデルのスケールを変更
-		MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.1f, 0.0f, 0.6f, 0.0f));
+
+		mode = 0;
 
 		mCollisionSphere.mLocalCenter = VGet(0, 0, 0);
 		mCollisionSphere.mRadius = 50.0f;
@@ -77,8 +78,8 @@ namespace App
 			// 斜め移動時の移動量を調整
 			if (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_UP)
 				|| CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_DOWN)
-				|| CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_UP)
-				|| CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_DOWN))
+				|| CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_UP)
+				|| CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_DOWN))
 			{
 				float normalization = 0.71;	// √2を割る
 				mPos = mPos + inputVec * deltaTime * mSpeed * normalization;	// 正規化
@@ -93,17 +94,65 @@ namespace App
 			mCollisionSphere.Move(mPos);
 		}
 
-		mShotTime -= deltaTime;
+		if (CheckHitKey(KEY_INPUT_Z))
+		{
+			mode = 0;
+		}
+
+		if (CheckHitKey(KEY_INPUT_X))
+		{
+			mode = 1;
+		}
+
+		if (CheckHitKey(KEY_INPUT_C))
+		{
+			mode = 2;
+		}
+
+		if (mode == 0)
+		{
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.0f, 0.0f, 1.0f, 0.0f));
+		}
+
+		if (mode == 1)
+		{
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(1.0f, 1.0f, 0.0f, 0.0f));
+		}
+
+		if (mode == 2)
+		{
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(1.0f, 0.0f, 0.0f, 0.0f));
+		}
 
 		// 弾発射処理
-		if (mShotTime < 0.0f && CheckHitKey(KEY_INPUT_SPACE))	// スペースキーを押すと
+		mShotTime -= deltaTime;
+		if (CheckHitKey(KEY_INPUT_SPACE))
 		{
-			// 発射間隔を設定
-			mShotTime = mMissileInterval;
+			if (mShotTime < 0.0f)
+			{
+				// 発射間隔を設定
+				switch (mode)
+				{
+				case 0:
+					mShotTime = mRapidInterval;
+					break;
 
-			// PlayerShotを呼び出す
-			PlayerShot* pb = new App::PlayerShot(this);
-			GameObjectManager::Entry(pb);
+				case 1:
+					mShotTime = mPenetrateInterval;
+					break;
+
+				case 2:
+					mShotTime = mMissileInterval;
+					break;
+
+				default:
+					break;
+				}
+
+				// PlayerShotを呼び出す
+				PlayerShot* pb = new App::PlayerShot(this);
+				GameObjectManager::Entry(pb);
+			}
 		}
 
 		MV1SetPosition(mModelHandle, mPos);
@@ -113,7 +162,7 @@ namespace App
 			// 上移動時に機体をX軸-30°傾ける
 			if (CheckHitKey(KEY_INPUT_UP)
 				|| (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_UP))
-				|| (CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_UP)))
+				|| (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_UP)))
 			{
 				MV1SetRotationXYZ(mModelHandle, VGet(60.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
 			}
@@ -121,7 +170,7 @@ namespace App
 			// 下移動時に機体をX軸+30°傾ける
 			if (CheckHitKey(KEY_INPUT_DOWN)
 				|| (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_DOWN))
-				|| (CheckHitKey(KEY_INPUT_LEFT)  && CheckHitKey(KEY_INPUT_DOWN)))
+				|| (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_DOWN)))
 			{
 				MV1SetRotationXYZ(mModelHandle, VGet(120.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
 			}

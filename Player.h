@@ -26,10 +26,11 @@ namespace App
 		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }
 
 	private:
-		const float mSpeed			 =   1.0f;	// プレイヤーの速度
-		const float mRapidInterval   = 200.0f;	// マシンガンの発射間隔
-		const float mHomingInterval  = 450.0f;	// ホーミング弾の発射間隔
-		const float mMissileInterval = 600.0f;	// ミサイルの発射間隔
+		const float mSpeed			   =   1.0f;	// プレイヤーの速度
+		const float mRapidInterval     = 100.0f;	// マシンガンの発射間隔
+		const float mPenetrateInterval = 250.0f;	// 貫通弾の発射間隔
+		const float mMissileInterval   = 600.0f;	// ミサイルの発射間隔
+		int mode;									// モード管理(0：マシンガン、1：貫通弾、2：ミサイル)
 		float mShotTime;
 
 		Lib::Sphere mCollisionSphere;		// 当たり判定球
