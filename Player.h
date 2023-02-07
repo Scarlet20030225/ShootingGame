@@ -23,6 +23,8 @@ namespace App
 		/// </summary>
 		void Draw() override;
 
+		int mode;	// モード管理(0：マシンガン、1：貫通弾、2：ミサイル)
+
 		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }
 
 	private:
@@ -30,7 +32,6 @@ namespace App
 		const float mRapidInterval     = 100.0f;	// マシンガンの発射間隔
 		const float mPenetrateInterval = 250.0f;	// 貫通弾の発射間隔
 		const float mMissileInterval   = 600.0f;	// ミサイルの発射間隔
-		int mode;									// モード管理(0：マシンガン、1：貫通弾、2：ミサイル)
 		float mShotTime;
 
 		Lib::Sphere mCollisionSphere;		// 当たり判定球

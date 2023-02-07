@@ -7,12 +7,36 @@ using namespace Lib;
 namespace App
 {
 	PlayerShot::PlayerShot(Player* player) : GameObject(ObjectTag::PlayerShot)
+		, mRapidModel(-1)
+		, mPenetrateModel(-1)
+		, mMissileModel(-1)
+		, mSpeed(0.0f)
 	{
-		mModelHandle = AssetManager::GetMesh("data/model/Missile.mv1");
+		mRapidModel	    = AssetManager::GetMesh("data/model/Bullet1.mv1");
+		mPenetrateModel = AssetManager::GetMesh("data/model/Bullet1.mv1");
+		mMissileModel   = AssetManager::GetMesh("data/model/Missile.mv1");
+
+		switch (player->mode)
+		{
+		case 0:
+			mModelHandle = mRapidModel;
+			mSpeed = mRapidSpeed;
+			break;
+		case 1:
+			mModelHandle = mPenetrateModel;
+			mSpeed = mPenetrateSpeed;
+			break;
+		case 2:
+			mModelHandle = mMissileModel;
+			mSpeed += mMissileAcceleration;
+			break;
+		default:
+			break;
+		}
+
 		MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
 		MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.1f, 0.0f, 0.6f, 0.0f));
 
-		mMissileSpeed = 0.0f;
 		mPos = player->GetPos();
 		mDir = player->GetDir();
 
@@ -30,13 +54,7 @@ namespace App
 
 	void PlayerShot::Update(float deltaTime)
 	{
-		// マシンガン
-		
-		// ホーミング弾
-
-		// ミサイル
-		mMissileSpeed += mAcceleration;
-		mPos += mDir * deltaTime * mMissileSpeed;
+		mPos += mDir * deltaTime * mSpeed;
 
 		MV1SetPosition(mModelHandle, mPos);
 		MV1SetRotationXYZ(mModelHandle, VGet(0.0f, 0.0f, 0.0f));

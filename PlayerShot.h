@@ -26,9 +26,14 @@ namespace App
 		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }
 
 	private:
-		VECTOR mDir;						// 弾の向き
-		float  mMissileSpeed;				// ミサイルの速度
-		const float mAcceleration = 0.1f;	// ミサイルの加速値
-		Lib::Sphere mCollisionSphere;		// 当たり判定球
+		VECTOR mDir;								// 弾の向き
+		int mRapidModel;
+		int mPenetrateModel;
+		int mMissileModel;
+		float  mSpeed;								// 弾の速度
+		const float mRapidSpeed			 = 1.3f;	// マシンガンの弾の速度
+		const float mPenetrateSpeed		 = 1.8f;	// 貫通弾の速度
+		const float mMissileAcceleration = 0.1f;	// ミサイルの加速値
+		Lib::Sphere mCollisionSphere;				// 当たり判定球
 	};
 };

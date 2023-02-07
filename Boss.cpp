@@ -44,7 +44,7 @@ namespace App
 				// ”­ËŠÔŠu‚ğİ’è
 				mShotTime = shotInterval;
 
-				// PlayerShot‚ğŒÄ‚Ño‚·
+				// BossShot‚ğŒÄ‚Ño‚·
 				BossShot* bossShot = new App::BossShot(this);
 				GameObjectManager::Entry(bossShot);
 			}

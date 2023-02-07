@@ -16,7 +16,7 @@ namespace App
 		mModelHandle = AssetManager::GetMesh("data/model/Player.mv1");	// モデル読み込み
 		MV1SetScale(mModelHandle, VGet(0.1f, 0.1f, 0.1f));		// モデルのスケールを変更
 
-		mode = 0;
+		mode = 0;	// モードをマシンガンモードに
 
 		mCollisionSphere.mLocalCenter = VGet(0, 0, 0);
 		mCollisionSphere.mRadius = 50.0f;
@@ -94,34 +94,34 @@ namespace App
 			mCollisionSphere.Move(mPos);
 		}
 
+		// モードチェンジ
 		if (CheckHitKey(KEY_INPUT_Z))
 		{
-			mode = 0;
+			mode = 0;	// モードをマシンガンモードに
 		}
-
 		if (CheckHitKey(KEY_INPUT_X))
 		{
-			mode = 1;
+			mode = 1;	// モードを貫通弾モードに
 		}
-
 		if (CheckHitKey(KEY_INPUT_C))
 		{
-			mode = 2;
+			mode = 2;	// モードをミサイルモードに
 		}
 
-		if (mode == 0)
+		// モードごとに機体の色を変更
+		switch (mode)
 		{
-			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.0f, 0.0f, 1.0f, 0.0f));
-		}
-
-		if (mode == 1)
-		{
-			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(1.0f, 1.0f, 0.0f, 0.0f));
-		}
-
-		if (mode == 2)
-		{
-			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(1.0f, 0.0f, 0.0f, 0.0f));
+		case 0:
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.0f, 0.0f, 1.0f, 0.0f));		// 色を青色に
+			break;
+		case 1:
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(1.0f, 1.0f, 0.0f, 0.0f));		// 色を黄色に
+			break;
+		case 2:
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(1.0f, 0.0f, 0.0f, 0.0f));		// 色を赤色に
+			break;
+		default:
+			break;
 		}
 
 		// 弾発射処理
@@ -136,15 +136,12 @@ namespace App
 				case 0:
 					mShotTime = mRapidInterval;
 					break;
-
 				case 1:
 					mShotTime = mPenetrateInterval;
 					break;
-
 				case 2:
 					mShotTime = mMissileInterval;
 					break;
-
 				default:
 					break;
 				}
@@ -175,7 +172,6 @@ namespace App
 				MV1SetRotationXYZ(mModelHandle, VGet(120.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
 			}
 		}
-
 		// 上下移動していない際の機体(傾きなし)
 		else
 		{
