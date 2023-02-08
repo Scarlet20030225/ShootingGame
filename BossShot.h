@@ -26,6 +26,11 @@ namespace App
 		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }
 
 	private:
+		/// <summary>
+		/// ‘¶İ‚Å‚«‚È‚¢—Ìˆæ
+		/// </summary>
+		void NonExistentArea();
+
 		VECTOR mDir;						// ’e‚ÌŒü‚«
 		float  mSpeed;						// ’e‚Ì‘¬“x
 		Lib::Sphere mCollisionSphere;		// “–‚½‚è”»’è‹…

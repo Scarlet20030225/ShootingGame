@@ -26,6 +26,11 @@ namespace App
 		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }
 
 	private:
+		/// <summary>
+		/// 存在できない領域
+		/// </summary>
+		void NonExistentArea();
+
 		VECTOR mDir;								// 弾の向き
 		int mRapidModel;							// マシンガンモデル
 		int mPenetrateModel;						// 貫通弾モデル

@@ -28,6 +28,16 @@ namespace App
 		Lib::Sphere GetCollsionSphere() { return mCollisionSphere; }
 
 	private:
+		/// <summary>
+		/// 移動可能な範囲
+		/// </summary>
+		void MovableRange();
+
+		/// <summary>
+		/// モードチェンジ
+		/// </summary>
+		void ModeChange();
+
 		const float mSpeed			   =   1.0f;	// プレイヤーの速度
 		const float mRapidInterval     =  50.0f;	// マシンガンの発射間隔
 		const float mPenetrateInterval = 250.0f;	// 貫通弾の発射間隔

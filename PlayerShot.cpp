@@ -55,6 +55,15 @@ namespace App
 	{
 	}
 
+	void PlayerShot::NonExistentArea()
+	{
+		if (mPos.x < 0 || mPos.x > 1850 || mPos.y < 0 || mPos.y > 1080)	// íeÇ™âÊñ äOÇ…èoÇΩÇÁ
+		{
+			// íeÇè¡ãéÇ∑ÇÈ
+			MV1DeleteModel(mModelHandle);
+		}
+	}
+
 	void PlayerShot::Update(float deltaTime)
 	{
 		mPos += mDir * deltaTime * mSpeed;
@@ -63,12 +72,13 @@ namespace App
 		MV1SetRotationXYZ(mModelHandle, VGet(0.0f, 0.0f, 0.0f));
 
 		mCollisionSphere.Move(mPos);
+
+		NonExistentArea();
 	}
 
 	void PlayerShot::Draw()
 	{
 		MV1DrawModel(mModelHandle);
-
-		//DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
+		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
 	}
 }

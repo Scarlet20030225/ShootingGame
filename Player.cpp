@@ -27,74 +27,28 @@ namespace App
 	{
 	}
 
-	void Player::Update(float deltaTime)
+	void Player::MovableRange()
 	{
-		VECTOR inputVec = VGet(0, 0, 0);
-
-		// 移動キーの入力があるか？
-		bool input = false;
-
-		// 上移動
-		VECTOR UP = { 0,  1,  0 };
-		if (CheckHitKey(KEY_INPUT_UP))
+		if (mPos.x <= 50)
 		{
-			inputVec += UP;
-			input = true;
+			mPos.x = 50;
 		}
-
-		// 下移動
-		VECTOR DOWN = { 0, -1,  0 };
-		if (CheckHitKey(KEY_INPUT_DOWN))
+		if (mPos.x >= 1700)
 		{
-			inputVec += DOWN;
-			input = true;
+			mPos.x = 1700;
 		}
-
-		// 右移動
-		VECTOR RIGHT = { 1,  0,  0 };
-		if (CheckHitKey(KEY_INPUT_RIGHT))
+		if (mPos.y <= 100)
 		{
-			inputVec += RIGHT;
-			input = true;
+			mPos.y = 100;
 		}
-
-		// 下移動
-		VECTOR LEFT = { -1,  0,  0 };
-		if (CheckHitKey(KEY_INPUT_LEFT))
+		if (mPos.y >= 980)
 		{
-			inputVec += LEFT;
-			input = true;
+			mPos.y = 980;
 		}
+	}
 
-		// 上下or左右の同時入力を確認すると入力をしなかったことにする
-		if (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_RIGHT)
-			|| CheckHitKey(KEY_INPUT_UP) && CheckHitKey(KEY_INPUT_DOWN))
-		{
-			input = false;
-		}
-
-		if (input)
-		{
-			// 斜め移動時の移動量を調整
-			if (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_UP)
-				|| CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_DOWN)
-				|| CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_UP)
-				|| CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_DOWN))
-			{
-				float normalization = 0.71;	// √2を割る
-				mPos = mPos + inputVec * deltaTime * mSpeed * normalization;	// 正規化
-			}
-
-			// 通常時の移動量
-			else
-			{
-				mPos = mPos + inputVec * deltaTime * mSpeed;
-			}
-
-			mCollisionSphere.Move(mPos);
-		}
-
-		// モードチェンジ
+	void Player::ModeChange()
+	{
 		if (CheckHitKey(KEY_INPUT_Z))
 		{
 			mode = 0;	// モードをマシンガンモードに
@@ -123,6 +77,96 @@ namespace App
 		default:
 			break;
 		}
+	}
+
+	void Player::Update(float deltaTime)
+	{
+		VECTOR inputVec = VGet(0, 0, 0);
+
+		bool input = false;	// 移動キーの入力があるか？
+
+		// 上移動
+		VECTOR UP = { 0, 1, 0 };
+		if (CheckHitKey(KEY_INPUT_UP))
+		{
+			inputVec += UP;
+			input = true;
+		}
+		// 下移動
+		VECTOR DOWN = { 0, -1, 0 };
+		if (CheckHitKey(KEY_INPUT_DOWN))
+		{
+			inputVec += DOWN;
+			input = true;
+		}
+		// 右移動
+		VECTOR RIGHT = { 1, 0, 0 };
+		if (CheckHitKey(KEY_INPUT_RIGHT))
+		{
+			inputVec += RIGHT;
+			input = true;
+		}
+		// 下移動
+		VECTOR LEFT = { -1, 0, 0 };
+		if (CheckHitKey(KEY_INPUT_LEFT))
+		{
+			inputVec += LEFT;
+			input = true;
+		}
+		// 上下or左右の同時入力を確認すると入力をしなかったことにする
+		if (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_RIGHT)
+			|| CheckHitKey(KEY_INPUT_UP) && CheckHitKey(KEY_INPUT_DOWN))
+		{
+			input = false;
+		}
+		if (input)
+		{
+			// 斜め移動時の移動量を調整
+			if (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_UP)
+				|| CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_DOWN)
+				|| CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_UP)
+				|| CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_DOWN))
+			{
+				float normalization = 0.71;	// √2を割る
+				mPos = mPos + inputVec * deltaTime * mSpeed * normalization;	// 正規化
+			}
+			// 通常時の移動量
+			else
+			{
+				mPos = mPos + inputVec * deltaTime * mSpeed;
+			}
+
+			mCollisionSphere.Move(mPos);
+		}
+
+		MV1SetPosition(mModelHandle, mPos);
+
+		if (input)
+		{
+			// 上移動時に機体をX軸-30°傾ける
+			if (CheckHitKey(KEY_INPUT_UP)
+				|| (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_UP))
+				|| (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_UP)))
+			{
+				MV1SetRotationXYZ(mModelHandle, VGet(60.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
+			}
+
+			// 下移動時に機体をX軸+30°傾ける
+			if (CheckHitKey(KEY_INPUT_DOWN)
+				|| (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_DOWN))
+				|| (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_DOWN)))
+			{
+				MV1SetRotationXYZ(mModelHandle, VGet(120.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
+			}
+		}
+		// 上下移動していない際の機体(傾きなし)
+		else
+		{
+			MV1SetRotationXYZ(mModelHandle, VGet(90.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
+		}
+
+		MovableRange();
+		ModeChange();
 
 		// 弾発射処理
 		mShotTime -= deltaTime;
@@ -150,32 +194,6 @@ namespace App
 				PlayerShot* pb = new App::PlayerShot(this);
 				GameObjectManager::Entry(pb);
 			}
-		}
-
-		MV1SetPosition(mModelHandle, mPos);
-
-		if (input)
-		{
-			// 上移動時に機体をX軸-30°傾ける
-			if (CheckHitKey(KEY_INPUT_UP)
-				|| (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_UP))
-				|| (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_UP)))
-			{
-				MV1SetRotationXYZ(mModelHandle, VGet(60.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
-			}
-
-			// 下移動時に機体をX軸+30°傾ける
-			if (CheckHitKey(KEY_INPUT_DOWN)
-				|| (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_DOWN))
-				|| (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_DOWN)))
-			{
-				MV1SetRotationXYZ(mModelHandle, VGet(120.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
-			}
-		}
-		// 上下移動していない際の機体(傾きなし)
-		else
-		{
-			MV1SetRotationXYZ(mModelHandle, VGet(90.0f * DX_PI_F / 180.0f, 180.0f * DX_PI_F / 180.0f, 0.0f));
 		}
 	}
 
