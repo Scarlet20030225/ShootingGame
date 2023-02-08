@@ -29,7 +29,7 @@ namespace App
 			printfDx("spherePlayerShot.xÅF%f", spherePlayerShot.mWorldCenter.x);
 			if (Lib::CollisionPair(spherePlayerShot, sphereBoss))
 			{
-				DrawString(100, 100, "HIT", GetColor(255, 255, 255));
+				DrawString(100, 100, "HIT", GetColor(255, 0, 0));
 			}
 		}
 	}
