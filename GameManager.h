@@ -1,8 +1,7 @@
 #pragma once
 #include"DxLib.h"
-#include"Player.h"
-#include"Boss.h"
 #include"GameState.h"
+#include"CollisionDetection.h"
 #include"Camera.h"
 
 namespace App
@@ -29,10 +28,13 @@ namespace App
 		void Finalize();
 
 	private:
-		Player* player;
-		Boss* boss;
-		GameState* gameState;
-		Camera* camera;
+		Player*     player;
+		PlayerShot* playerShot;
+		Boss*       boss;
+		BossShot*   bossShot;
+		GameState*  gameState;
+		Camera*     camera;
+		CollisionDetection* collisionDetection;
 
 		// ウィンドウ関連
 		int screenSizeX   = 1920;	// スクリーン幅

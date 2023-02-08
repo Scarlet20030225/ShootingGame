@@ -79,6 +79,6 @@ namespace App
 	void PlayerShot::Draw()
 	{
 		MV1DrawModel(mModelHandle);
-		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
+		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 4, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
 	}
 }

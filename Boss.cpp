@@ -56,6 +56,6 @@ namespace App
 	void Boss::Draw()
 	{
 		MV1DrawModel(mModelHandle);	// ÉÇÉfÉãÇï`âÊ
-		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
+		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 30, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
 	}
 }

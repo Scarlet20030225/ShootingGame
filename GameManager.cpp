@@ -4,12 +4,10 @@
 #include"GameManager.h"
 #include"AssetManager.h"
 #include"GameObjectManager.h"
-#include"Collision.h"
 #include"Title.h"
 #include"OperationMethod.h"
 #include"GamePlay.h"
 #include"Result.h"
-#include"PlayerShot.h"
 
 #pragma warning(disable:4996)
 
@@ -22,12 +20,18 @@ namespace App
     GameManager::~GameManager()
     {
         delete player;
+        delete playerShot;
         delete boss;
+        delete bossShot;
         delete gameState;
+        delete collisionDetection;
 
-        player    = nullptr;
-        boss      = nullptr;
-        gameState = nullptr;
+        player     = nullptr;
+        playerShot = nullptr;
+        boss       = nullptr;
+        bossShot   = nullptr;
+        gameState  = nullptr;
+        collisionDetection = nullptr;
     }
 
     void GameManager::Init()
@@ -41,10 +45,13 @@ namespace App
         App::GameObjectManager::Init();
         App::AssetManager::Init();
 
-        player    = new App::Player();
-        boss      = new App::Boss();
-        gameState = new App::Title();
-        camera    = new App::Camera();
+        player     = new App::Player();
+        playerShot = new App::PlayerShot(player);
+        boss       = new App::Boss();
+        bossShot   = new App::BossShot(boss);
+        gameState  = new App::Title();
+        camera     = new App::Camera();
+        collisionDetection = new App::CollisionDetection();
 
         App::GameObjectManager::Entry(player);
         App::GameObjectManager::Entry(boss);
@@ -70,10 +77,13 @@ namespace App
 
             // 描画処理
             //gameState->Draw();
+
             App::GameObjectManager::Draw();
 
             // 描画を確定
             ScreenFlip();
+
+            collisionDetection->Detection();
 
             // 1フレームにかかる時間を計算
             auto end = std::chrono::system_clock::now();
