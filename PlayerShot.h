@@ -27,13 +27,14 @@ namespace App
 
 	private:
 		VECTOR mDir;								// 弾の向き
-		int mRapidModel;
-		int mPenetrateModel;
-		int mMissileModel;
+		int mRapidModel;							// マシンガンモデル
+		int mPenetrateModel;						// 貫通弾モデル
+		int mMissileModel;							// ミサイルモデル
 		float  mSpeed;								// 弾の速度
-		const float mRapidSpeed			 = 1.3f;	// マシンガンの弾の速度
-		const float mPenetrateSpeed		 = 1.8f;	// 貫通弾の速度
-		const float mMissileAcceleration = 0.1f;	// ミサイルの加速値
+		const float mRapidSpeed			 = 2.0f;	// マシンガンの弾の速度
+		const float mPenetrateSpeed		 = 2.5f;	// 貫通弾の速度
+		const float mMissileSpeed		 = 1.5f;	// ミサイルの速度
+
 		Lib::Sphere mCollisionSphere;				// 当たり判定球
 	};
 };

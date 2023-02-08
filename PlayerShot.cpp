@@ -21,21 +21,23 @@ namespace App
 		case 0:
 			mModelHandle = mRapidModel;
 			mSpeed = mRapidSpeed;
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.0f, 0.0f, 0.5f, 0.0f));
 			break;
 		case 1:
 			mModelHandle = mPenetrateModel;
 			mSpeed = mPenetrateSpeed;
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.5f, 0.5f, 0.0f, 0.0f));
 			break;
 		case 2:
 			mModelHandle = mMissileModel;
-			mSpeed += mMissileAcceleration;
+			mSpeed = mMissileSpeed;
+			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.5f, 0.0f, 0.0f, 0.0f));
 			break;
 		default:
 			break;
 		}
 
 		MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
-		MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.1f, 0.0f, 0.6f, 0.0f));
 
 		mPos = player->GetPos();
 		mDir = player->GetDir();
@@ -66,6 +68,6 @@ namespace App
 	{
 		MV1DrawModel(mModelHandle);
 
-		DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
+		//DrawSphere3D(mCollisionSphere.mWorldCenter, mCollisionSphere.mRadius, 8, GetColor(255, 0, 0), 0, FALSE);// å„Ç≈è¡Ç∑
 	}
 }

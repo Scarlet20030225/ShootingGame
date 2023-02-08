@@ -29,10 +29,10 @@ namespace App
 
 	private:
 		const float mSpeed			   =   1.0f;	// プレイヤーの速度
-		const float mRapidInterval     = 100.0f;	// マシンガンの発射間隔
+		const float mRapidInterval     =  50.0f;	// マシンガンの発射間隔
 		const float mPenetrateInterval = 250.0f;	// 貫通弾の発射間隔
 		const float mMissileInterval   = 600.0f;	// ミサイルの発射間隔
-		float mShotTime;
+		float mShotTime;							// 発射間隔
 
 		Lib::Sphere mCollisionSphere;		// 当たり判定球
 	};
