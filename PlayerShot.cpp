@@ -22,22 +22,23 @@ namespace App
 			mModelHandle = mRapidModel;
 			mSpeed = mRapidSpeed;
 			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.0f, 0.0f, 0.5f, 0.0f));
+			MV1SetScale(mModelHandle, VGet(0.03f, 0.03f, 0.03f));
 			break;
 		case 1:
 			mModelHandle = mPenetrateModel;
 			mSpeed = mPenetrateSpeed;
 			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.5f, 0.5f, 0.0f, 0.0f));
+			MV1SetScale(mModelHandle, VGet(0.04f, 0.04f, 0.04f));
 			break;
 		case 2:
 			mModelHandle = mMissileModel;
 			mSpeed = mMissileSpeed;
 			MV1SetMaterialEmiColor(mModelHandle, 0, GetColorF(0.5f, 0.0f, 0.0f, 0.0f));
+			MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
 			break;
 		default:
 			break;
 		}
-
-		MV1SetScale(mModelHandle, VGet(0.02f, 0.02f, 0.02f));
 
 		mPos = player->GetPos();
 		mDir = player->GetDir();
