@@ -26,11 +26,11 @@ namespace App
         delete gameState;
         delete collisionDetection;
 
-        player     = nullptr;
-        playerShot = nullptr;
-        boss       = nullptr;
-        bossShot   = nullptr;
-        gameState  = nullptr;
+        player             = nullptr;
+        playerShot         = nullptr;
+        boss               = nullptr;
+        bossShot           = nullptr;
+        gameState          = nullptr;
         collisionDetection = nullptr;
     }
 
@@ -45,12 +45,12 @@ namespace App
         App::GameObjectManager::Init();
         App::AssetManager::Init();
 
-        player     = new App::Player();
-        playerShot = new App::PlayerShot(player);
-        boss       = new App::Boss();
-        bossShot   = new App::BossShot(boss);
-        gameState  = new App::Title();
-        camera     = new App::Camera();
+        player             = new App::Player();
+        playerShot         = new App::PlayerShot(player);
+        boss               = new App::Boss();
+        bossShot           = new App::BossShot(boss);
+        gameState          = new App::Title();
+        camera             = new App::Camera();
         collisionDetection = new App::CollisionDetection();
 
         App::GameObjectManager::Entry(player);
@@ -77,13 +77,12 @@ namespace App
 
             // 描画処理
             //gameState->Draw();
+            collisionDetection->Detection();
 
             App::GameObjectManager::Draw();
 
             // 描画を確定
             ScreenFlip();
-
-            collisionDetection->Detection();
 
             // 1フレームにかかる時間を計算
             auto end = std::chrono::system_clock::now();

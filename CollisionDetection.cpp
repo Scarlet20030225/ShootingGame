@@ -7,10 +7,10 @@ namespace App
 {
 	CollisionDetection::CollisionDetection()
 	{
-		player = new App::Player();
+		player	   = new App::Player();
 		playerShot = new App::PlayerShot(player);
-		boss = new App::Boss();
-		bossShot = new App::BossShot(boss);
+		boss	   = new App::Boss();
+		bossShot   = new App::BossShot(boss);
 	}
 
 	CollisionDetection::~CollisionDetection()

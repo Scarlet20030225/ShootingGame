@@ -1,4 +1,5 @@
 #pragma once
+#include"GameObjectManager.h"
 #include"Player.h"
 #include"PlayerShot.h"
 #include"Boss.h"
