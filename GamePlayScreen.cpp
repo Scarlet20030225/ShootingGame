@@ -5,36 +5,33 @@ namespace App
 {
 	GamePlayScreen::GamePlayScreen()
 	{
-		screenFrame   = LoadGraph("data/graph/ScreenFrame.png");
-		lostEndurance = LoadGraph("data/graph/LostEndurance.png");
-		lostLife	  = LoadGraph("data/graph/LostLife.png");
-		backStar1	  = LoadGraph("data/graph/BackStar1.png");
-		backStar2	  = LoadGraph("data/graph/BackStar2.png");
-		backStar3	  = LoadGraph("data/graph/BackStar3.png");
+		screenFrameGraph   = LoadGraph("data/graph/ScreenFrame.png");
+		lostEnduranceGraph = LoadGraph("data/graph/LostEndurance.png");
+		lostLifeGraph      = LoadGraph("data/graph/LostLife.png");
+		backStar1Graph     = LoadGraph("data/graph/BackStar1.png");
+		backStar2Graph     = LoadGraph("data/graph/BackStar2.png");
+		backStar3Graph     = LoadGraph("data/graph/BackStar3.png");
+
+		GetGraphSize(backStar1Graph, &backStarW, &backStarH);
+
+		backStar1X[0] =    0.0f;
+		backStar1X[1] = 1920.0f;
+
+		backStar2X[0] =    0.0f;
+		backStar2X[1] = 1920.0f;
+
+		backStar3X[0] =    0.0f;
+		backStar3X[1] = 1920.0f;
+
+		backStarY	  =    0.0f;
+
+		scrollSpeed[0] =   0.5f;
+		scrollSpeed[1] =   0.3f;
+		scrollSpeed[2] =   0.2f;
 	}
 
 	GamePlayScreen::~GamePlayScreen()
 	{
-	}
-
-	void GamePlayScreen::Init()
-	{
-		GetGraphSize(backStar1, &backStarW, &backStarH);
-
-		backStar1X[0] =    0;
-		backStar1X[1] = 1920;
-
-		backStar2X[0] =	   0;
-		backStar2X[1] = 1920;
-
-		backStar3X[0] =	   0;
-		backStar3X[1] = 1920;
-
-		backStarY = 0;
-
-		scrollSpeed[0] = 0.5f;
-		scrollSpeed[1] = 0.3f;
-		scrollSpeed[2] = 0.1f;
 	}
 
 	void GamePlayScreen::Update(float deltaTime)
@@ -51,39 +48,39 @@ namespace App
 
 	void GamePlayScreen::Draw()
 	{
-		DrawGraph(backStar1X[0], backStarY, backStar1, TRUE);
-		DrawGraph(backStar1X[1], backStarY, backStar1, TRUE);
+		DrawGraph(backStar1X[0], backStarY, backStar1Graph, TRUE);
+		DrawGraph(backStar1X[1], backStarY, backStar1Graph, TRUE);
 		if (backStar1X[0] + backStarW == 0)
 		{
-			backStar1X[0] = 1920;
+			backStar1X[0] = 1920.0f;
 		}
 		if (backStar1X[1] + backStarW == 0)
 		{
-			backStar1X[1] = 1920;
+			backStar1X[1] = 1920.0f;
 		}
 
-		DrawGraph(backStar2X[0], backStarY, backStar2, TRUE);
-		DrawGraph(backStar2X[1], backStarY, backStar2, TRUE);
+		DrawGraph(backStar2X[0], backStarY, backStar2Graph, TRUE);
+		DrawGraph(backStar2X[1], backStarY, backStar2Graph, TRUE);
 		if (backStar2X[0] + backStarW == 0)
 		{
-			backStar2X[0] = 1920;
+			backStar2X[0] = 1920.0f;
 		}
 		if (backStar2X[1] + backStarW == 0)
 		{
-			backStar2X[1] = 1920;
+			backStar2X[1] = 1920.0f;
 		}
 
-		DrawGraph(backStar3X[0], backStarY, backStar3, TRUE);
-		DrawGraph(backStar3X[1], backStarY, backStar3, TRUE);
+		DrawGraph(backStar3X[0], backStarY, backStar3Graph, TRUE);
+		DrawGraph(backStar3X[1], backStarY, backStar3Graph, TRUE);
 		if (backStar3X[0] + backStarW == 0)
 		{
-			backStar3X[0] = 1920;
+			backStar3X[0] = 1920.0f;
 		}
 		if (backStar3X[1] + backStarW == 0)
 		{
-			backStar3X[1] = 1920;
+			backStar3X[1] = 1920.0f;
 		}
 
-		DrawGraph(0, 0, screenFrame, TRUE);
+		DrawGraph(0, 0, screenFrameGraph, TRUE);
 	}
 }

@@ -8,22 +8,21 @@ namespace App
 		GamePlayScreen();
 		~GamePlayScreen();
 
-		void Init();
 		void Update(float deltaTime);
 		void Draw();
 
 	private:
-		int screenFrame;
-		int lostEndurance;
-		int lostLife;
+		int screenFrameGraph;
+		int lostEnduranceGraph;
+		int lostLifeGraph;
 
-		int backStar1;
+		int backStar1Graph;
 		int backStar1X[2];
 
-		int backStar2;
+		int backStar2Graph;
 		int backStar2X[2];
 
-		int backStar3;
+		int backStar3Graph;
 		int backStar3X[2];
 
 		int backStarY;

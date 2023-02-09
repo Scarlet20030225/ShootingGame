@@ -14,11 +14,6 @@ namespace App
 		~GameManager();		// デストラクタ
 
 		/// <summary>
-		/// 初期化
-		/// </summary>
-		void Init();
-
-		/// <summary>
 		/// ループ
 		/// </summary>
 		void Loop();

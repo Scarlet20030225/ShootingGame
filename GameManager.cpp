@@ -15,6 +15,30 @@ namespace App
 {
     GameManager::GameManager()
     {
+        // DxLib初期化
+        ChangeWindowMode(TRUE);
+        DxLib_Init();
+        SetGraphMode(screenSizeX, screenSizeY, colorBitDepth);
+        //SetBackgroundColor(255, 255, 255);
+
+        App::GameObjectManager::Init();
+        App::AssetManager::Init();
+
+        player = new App::Player();
+        playerShot = new App::PlayerShot(player);
+        boss = new App::Boss();
+        bossShot = new App::BossShot(boss);
+        gameState = new App::Title();
+        camera = new App::Camera();
+        collisionDetection = new App::CollisionDetection();
+        gamePlaySceen = new App::GamePlayScreen();
+
+        App::GameObjectManager::Entry(player);
+        App::GameObjectManager::Entry(boss);
+
+        // フレームを60fpsに
+        fps = 60;
+        deltaTime = 1000 / fps;
     }
 
     GameManager::~GameManager()
@@ -32,36 +56,6 @@ namespace App
         bossShot           = nullptr;
         gameState          = nullptr;
         collisionDetection = nullptr;
-    }
-
-    void GameManager::Init()
-    {
-        // DxLib初期化
-        ChangeWindowMode(TRUE);
-        DxLib_Init();
-        SetGraphMode(screenSizeX, screenSizeY, colorBitDepth);
-        //SetBackgroundColor(255, 255, 255);
-
-        App::GameObjectManager::Init();
-        App::AssetManager::Init();
-
-        player             = new App::Player();
-        playerShot         = new App::PlayerShot(player);
-        boss               = new App::Boss();
-        bossShot           = new App::BossShot(boss);
-        gameState          = new App::Title();
-        camera             = new App::Camera();
-        collisionDetection = new App::CollisionDetection();
-        gamePlaySceen      = new App::GamePlayScreen();
-
-        App::GameObjectManager::Entry(player);
-        App::GameObjectManager::Entry(boss);
-
-        gamePlaySceen->Init();
-
-        // フレームを60fpsに
-        fps = 60;
-        deltaTime = 1000 / fps;
     }
 
     void GameManager::Loop()
