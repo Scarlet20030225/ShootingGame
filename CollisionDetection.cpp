@@ -26,7 +26,7 @@ namespace App
 			spherePlayerShot = playerShot->GetCollsionSphere();
 			sphereBoss		 = boss->GetCollsionSphere();
 
-			printfDx("spherePlayerShot.xÅF%f", spherePlayerShot.mWorldCenter.x);
+			//printfDx("spherePlayerShot.xÅF%f", spherePlayerShot.mWorldCenter.x);
 			if (Lib::CollisionPair(spherePlayerShot, sphereBoss))
 			{
 				DrawString(100, 100, "HIT", GetColor(255, 0, 0));

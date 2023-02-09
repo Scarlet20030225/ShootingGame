@@ -52,9 +52,12 @@ namespace App
         gameState          = new App::Title();
         camera             = new App::Camera();
         collisionDetection = new App::CollisionDetection();
+        gamePlaySceen      = new App::GamePlayScreen();
 
         App::GameObjectManager::Entry(player);
         App::GameObjectManager::Entry(boss);
+
+        gamePlaySceen->Init();
 
         // フレームを60fpsに
         fps = 60;
@@ -71,6 +74,7 @@ namespace App
             // Update処理
             //gameState->Update(deltaTime);
             App::GameObjectManager::Update(deltaTime);
+            gamePlaySceen->Update(deltaTime);
 
             //画面更新処理
             ClearDrawScreen();
@@ -78,7 +82,7 @@ namespace App
             // 描画処理
             //gameState->Draw();
             collisionDetection->Detection();
-
+            gamePlaySceen->Draw();
             App::GameObjectManager::Draw();
 
             // 描画を確定

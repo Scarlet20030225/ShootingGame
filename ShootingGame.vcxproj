@@ -145,6 +145,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="GamePlayScreen.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="OperationMethod.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GamePlay.h" />
+    <ClInclude Include="GamePlayScreen.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="ObjectTag.h" />

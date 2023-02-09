@@ -3,6 +3,7 @@
 #include"GameState.h"
 #include"CollisionDetection.h"
 #include"Camera.h"
+#include"GamePlayScreen.h"
 
 namespace App
 {
@@ -35,6 +36,7 @@ namespace App
 		GameState*  gameState;
 		Camera*     camera;
 		CollisionDetection* collisionDetection;
+		GamePlayScreen* gamePlaySceen;
 
 		// ウィンドウ関連
 		int screenSizeX   = 1920;	// スクリーン幅
