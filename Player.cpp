@@ -33,17 +33,17 @@ namespace App
 		{
 			mPos.x = 50;
 		}
-		if (mPos.x >= 1700)
+		if (mPos.x >= 960)
 		{
-			mPos.x = 1700;
+			mPos.x = 960;
 		}
-		if (mPos.y <= 100)
+		if (mPos.y <= 200)
 		{
-			mPos.y = 100;
+			mPos.y = 200;
 		}
-		if (mPos.y >= 980)
+		if (mPos.y >= 880)
 		{
-			mPos.y = 980;
+			mPos.y = 880;
 		}
 	}
 
@@ -128,7 +128,7 @@ namespace App
 				|| CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_DOWN))
 			{
 				float normalization = 0.71;	// ã2‚ğŠ„‚é
-				mPos = mPos + inputVec * deltaTime * mSpeed * normalization;	// ³‹K‰»
+				mPos = mPos + inputVec * deltaTime * mSpeed * normalization;	// Î‚ßˆÚ“®‚ÌˆÚ“®—Ê‚ğ³‹K‰»
 			}
 			// ’Êí‚ÌˆÚ“®—Ê
 			else
